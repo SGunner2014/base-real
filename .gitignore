@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+BIOS-bochs-latest
+VGABIOS-lgpl-latest
+bochsout.txt
+*.bin
+*.o
+*.img
