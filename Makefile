@@ -1,5 +1,10 @@
 run: base.img
-	qemu-system-i386 -fda base.img -d guest_errors
+	sudo losetup /dev/loop50 base.img
+	-sudo qemu-system-i386 -fda /dev/loop50 -d guest_errors
+	sudo losetup -d /dev/loop50
+
+bochs: base.img
+	bochs
 
 # Compiles all relevant assembly files below
 %.o: %.asm
@@ -8,24 +13,25 @@ run: base.img
 %.bin: %.asm
 	nasm $< -f bin -o $@
 
-base.img: bootsector.bin secondstage.bin
-	dd if=/dev/zero of=base.img bs=512 count=2880
+base.img: bootsector.bin secondstage.bin mbr.bin
+	dd if=/dev/zero of=base.img bs=516096c count=1000
+	sudo sfdisk base.img < sda.sfdisk
 	sudo losetup /dev/loop50 base.img
-	sudo mkdosfs /dev/loop50
-	sudo mkdir -p /mnt/myfloppy
+	sudo mkdosfs -F16 /dev/loop50
 	sudo mount -t msdos /dev/loop50 /mnt/myfloppy
-
-	sudo cp secondstage.bin /mnt/myfloppy/BOOT.SYS
-
+	sudo cp secondstage.bin /mnt/myfloppy/BASELOAD.SYS
 	sudo umount /mnt/myfloppy
 	sudo losetup -d /dev/loop50
-
-	dd if=bootsector.bin of=base.img bs=512 count=1 seek=0 conv=notrunc
+	dd if=mbr.bin of=base.img bs=512 count=1 seek=0 conv=notrunc
+	dd if=bootsector.bin of=base.img bs=512 count=1 seek=64 conv=notrunc
 
 secondstage.bin: src/boot/secondstage.bin
 	cat $< > $@
 
 bootsector.bin: src/boot/bootmain.bin
+	cat $< > $@
+
+mbr.bin: src/boot/mbr.bin
 	cat $< > $@
 
 clean:
