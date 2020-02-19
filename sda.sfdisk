@@ -1,6 +1,6 @@
 label: dos
-label-id: 0xb5de653e
+label-id: 0x21ee5498
 device: base.img
 unit: sectors
 
-base.img1 : start=          63, size=     1007937, type=6, bootable
+base.img1 : start=          63, size=       20000, type=6, bootable
