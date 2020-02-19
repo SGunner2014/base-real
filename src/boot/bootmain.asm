@@ -7,10 +7,22 @@ entry:
     nop
 
 ; begin bpb
+; bsOemName db "IBM     "
+; bsBytesPerSec dw 512
+; bsSecsPerClust db 1
+; bsResSecs dw 1
+; bsNumFats db 2
+; bsRootDirEnts dw 224
+; bsTotalSectors dw ; TODO: complete
+; bsMediaDesc 0xf0
+; bsSecsPerFat 9
+; bsSecsPerTrack 18
 
 ; begin actual bootloader
 entry_main:
-    
+    mov al, 'x'
+    mov ah, 0x0e
+    int 0x10
 
 dynamic_dap:
     dap_size            db 0x10
