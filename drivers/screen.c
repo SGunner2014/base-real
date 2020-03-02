@@ -21,12 +21,35 @@ void fb_write(const char *content, const char format)
         _printc(content[i++], format);
 }
 
+// Clears the screen
+void fb_clear()
+{
+    char *vid_mem = (char*) VID_MEM_ADDR;
+    int i;
+    for (i = 0; i < (SCREEN_HEIGHT * SCREEN_WIDTH * 2); i++) {
+        vid_mem[i] = 0;
+    }
+    _setpos(0);
+}
+
 // Sets the current cursor position
 void fb_set_pos(const int pos_x, const int pos_y)
 {
     int offset;
     offset = (pos_y * SCREEN_WIDTH * 2) + (pos_x * 2);
     _setpos(offset);
+}
+
+// Returns the current cursor positions
+struct pos_info fb_get_pos()
+{
+    int offset = _getpos() / 2;
+    int pos_y = offset / SCREEN_WIDTH;
+    int pos_x = offset % SCREEN_WIDTH;
+    struct pos_info posinf;
+    posinf.pos_x = pos_x;
+    posinf.pos_y = pos_y;
+    return posinf;
 }
 
 
