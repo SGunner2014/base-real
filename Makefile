@@ -1,4 +1,4 @@
-OBJECTS = loader.o kmain.o drivers/screen.o core/cpu/ports.o libc/mem.o core/mem/gdt.o
+OBJECTS = loader.o kmain.o drivers/screen.o core/cpu/ports.o libc/mem.o core/mem/gdt.o core/cpu/idt.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 		 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
