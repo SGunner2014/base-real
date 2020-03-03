@@ -1,5 +1,5 @@
 #include "screen.h"
-#include "cpu/ports.h"
+#include "../core/cpu/ports.h"
 #include "../libc/mem.h"
 
 const int VID_MEM_ADDR = 0x000B8000;

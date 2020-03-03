@@ -1,5 +1,4 @@
 #include "drivers/screen.h"
-// #include "drivers/mem/gdt.h"
 
 extern void load_gdt();
 

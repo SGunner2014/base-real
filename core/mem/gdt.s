@@ -8,7 +8,7 @@ load_gdt:
     mov es, ax
     mov ss, ax
 
-    jmp 0x08:test_mark
+    jmp 0x08:test_mark ; Far jump to flush gdt
 
 test_mark:
     ret
