@@ -25,17 +25,14 @@
 #define YELLOW 0xe
 #define WHITE 0xf
 
-typedef struct {
-    int pos_x;
-    int pos_y;
-} pos_info;
-
-static int current_colours;
+static int current_colours = 0x0f;
 
 void clear_screen();
 void write(const char *content);
 void print(const char *content);
-void set_cursor_pos(int x, int y);
-pos_info get_cursor_pos();
+void set_cursor_pos(const int x, const int y);
+struct pos_info get_cursor_pos();
+void set_background_colour(const char colour);
+void set_foreground_color(const char colour);
 
 #endif

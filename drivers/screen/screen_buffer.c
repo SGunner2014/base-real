@@ -34,8 +34,9 @@ void fb_clear(const char format)
 {
     char *vid_mem = (char*) VID_MEM_ADDR;
     int i;
-    for (i = 0; i < (SCREEN_HEIGHT * SCREEN_WIDTH * 2); i++) {
-        vid_mem[i] = format;
+    for (i = 0; i < (SCREEN_HEIGHT * SCREEN_WIDTH * 2); i+=2) {
+        vid_mem[i] = 0;
+        vid_mem[i + 1] = format;
     }
     _setpos(0);
 }

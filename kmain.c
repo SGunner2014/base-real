@@ -1,4 +1,5 @@
 #include "kmain.h"
+#include "drivers/console/console.h"
 
 // Main kernel entry point
 void kmain()
@@ -9,7 +10,8 @@ void kmain()
     asm("int $2");
     asm("int $3");
 
-    fb_write("Hello, world!\n", 0x28);
+    clear_screen();
+    print("Hello, world!");
 
     for (;;) {
         asm("hlt");

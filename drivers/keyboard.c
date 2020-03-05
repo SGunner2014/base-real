@@ -7,6 +7,9 @@ static void handle_keyboard_interrupt(registers_t *register_state)
 {
     int scancode = port_byte_in(0x60);
     fb_write("key", 0x28);
+    scancode++;
+    if (register_state)
+        return;
 }
 
 // Initialises the keyboard
