@@ -58,3 +58,4 @@ bochsout.txt
 *.o
 *.img
 *.iso
+.vscode/

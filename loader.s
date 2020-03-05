@@ -18,7 +18,7 @@ loader:
 
 .loop:
     call kmain
-    jmp .loop
+    jmp $
 
 section .bss
 align 4

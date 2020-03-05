@@ -11,4 +11,5 @@ load_gdt:
     jmp 0x08:test_mark ; Far jump to flush gdt
 
 test_mark:
+    cli
     ret
