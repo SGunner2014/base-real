@@ -1,6 +1,14 @@
-#include "screen.h"
-#include "../core/cpu/ports.h"
-#include "../libc/mem.h"
+/*
+ * This is a really basic API for the frame buffer.
+ *
+ * We shouldn't use this directly - use console instead.
+ *
+ * Author: Sam J Gunner
+ */
+
+#include "screen_buffer.h"
+#include "../../core/cpu/ports.h"
+#include "../../libc/mem.h"
 
 const int VID_MEM_ADDR = 0x000B8000;
 const int REG_SCREEN_CTRL = 0x3d4;
@@ -22,12 +30,12 @@ void fb_write(const char *content, const char format)
 }
 
 // Clears the screen
-void fb_clear()
+void fb_clear(const char format)
 {
     char *vid_mem = (char*) VID_MEM_ADDR;
     int i;
     for (i = 0; i < (SCREEN_HEIGHT * SCREEN_WIDTH * 2); i++) {
-        vid_mem[i] = 0;
+        vid_mem[i] = format;
     }
     _setpos(0);
 }

@@ -1,7 +1,7 @@
 #include "keyboard.h"
 #include "../core/cpu/isr.h"
 #include "../core/cpu/ports.h"
-#include "screen.h"
+#include "screen/screen_buffer.h"
 
 static void handle_keyboard_interrupt(registers_t *register_state)
 {

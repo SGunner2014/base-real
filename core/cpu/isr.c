@@ -7,7 +7,7 @@
 #include "isr.h"
 #include "setup.h"
 #include "ports.h"
-#include "../../drivers/screen.h"
+#include "../../drivers/screen/screen_buffer.h"
 
 isr_t interrupt_handlers[256];
 
