@@ -1,3 +1,6 @@
+#ifndef _ISR_H
+#define _ISR_H 1
+
 #include "../../libc/stdint.h"
 
 // It may look like madness but I promise it's not.
@@ -83,3 +86,5 @@ void install_isrs();
 void handle_isr(registers_t*);
 void handle_irq(registers_t*);
 void register_handler(uint8_t n, isr_t handler);
+
+#endif
