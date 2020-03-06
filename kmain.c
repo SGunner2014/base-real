@@ -1,5 +1,4 @@
 #include "kmain.h"
-#include "drivers/console/console.h"
 
 // Main kernel entry point
 void kmain()
