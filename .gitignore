@@ -60,3 +60,6 @@ bochsout.txt
 *.iso
 .vscode/
 .idea/
+
+# Any files that aren't ready yet.
+*.old

@@ -78,8 +78,12 @@ void install_isrs()
 
 void handle_isr(registers_t* reg)
 {
-    if (reg)
-        fb_write("interrupt", 0x28);
+    if (reg) {
+        switch(reg->int_no) {
+            case 14:
+                fb_write("page fault\n", 0xF0);
+        }
+    }
 }
 
 void handle_irq(registers_t* reg)
