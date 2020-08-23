@@ -52,3 +52,23 @@ void set_foreground_color(const char colour)
     current_colours = current_colours & 0xf0;
     current_colours = current_colours | colour;
 }
+
+void print_backspace()
+{
+    struct pos_info pos = fb_get_pos();
+    if (pos.pos_x < 1)
+    {
+        if (pos.pos_y > 0)
+        {
+            pos.pos_y--;
+        }
+    }
+    else
+    {
+        pos.pos_x--;
+    }
+
+    fb_set_pos(pos.pos_x, pos.pos_y);
+    fb_write(' ', 0x00);
+    fb_set_pos(pos.pos_x, pos.pos_y);
+}
