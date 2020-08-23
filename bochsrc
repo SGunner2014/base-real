@@ -84,8 +84,8 @@ config_interface: textconfig
 #display_library: macintosh
 #display_library: nogui
 #display_library: rfb
-display_library: sdl # startup in fullscreen mode
-#display_library: sdl2, options="fullscreen" # startup in fullscreen mode
+#display_library: sdl # startup in fullscreen mode
+display_library: sdl2
 #display_library: sdl2
 #display_library: term
 #display_library: vncsrv
