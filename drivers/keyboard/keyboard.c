@@ -47,13 +47,10 @@ static void handle_keyboard_interrupt(registers_t *register_state)
         switch (released)
         {
         case L_SHIFT:
-            kflags.lshift = 1;
+            kflags.lshift = 0;
             break;
         case R_SHIFT:
-            kflags.rshift = 1;
-            break;
-        case CAPS_LOCK:
-            kflags.caps = 1;
+            kflags.rshift = 0;
             break;
         }
 
@@ -65,13 +62,10 @@ static void handle_keyboard_interrupt(registers_t *register_state)
         switch (scancode)
         {
         case L_SHIFT:
-            kflags.lshift = 0;
+            kflags.lshift = 1;
             break;
         case R_SHIFT:
-            kflags.rshift = 0;
-            break;
-        case CAPS_LOCK:
-            kflags.caps = 0;
+            kflags.rshift = 1;
             break;
         default:
             process_keypress(scancode);
@@ -83,6 +77,7 @@ void process_keypress(uint8_t scancode)
 {
     if (scancode > SCAN_MAX)
         return;
+
     if (scancode == BACKSPACE)
     {
         int len = backspace(key_buffer);
@@ -109,7 +104,7 @@ void process_keypress(uint8_t scancode)
 
         char str[2] = {letter, '\0'};
         str_append(key_buffer, letter);
-        print(str);
+        write(str);
     }
 }
 
