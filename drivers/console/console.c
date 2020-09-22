@@ -7,6 +7,8 @@
 #include "console.h"
 #include "../screen/screen_buffer.h"
 
+static int current_colours = 0x0f;
+
 // Clears the screen with the current background colour.
 void clear_screen()
 {
@@ -41,7 +43,6 @@ struct pos_info get_cursor_pos()
 // Sets the current console background colour
 void set_background_colour(const char colour)
 {
-    colour << 16;
     current_colours = current_colours & 0x0f;
     current_colours = current_colours | colour;
 }
@@ -69,6 +70,6 @@ void print_backspace()
     }
 
     fb_set_pos(pos.pos_x, pos.pos_y);
-    fb_write(' ', 0x00);
+    fb_write(" ", 0x00);
     fb_set_pos(pos.pos_x, pos.pos_y);
 }

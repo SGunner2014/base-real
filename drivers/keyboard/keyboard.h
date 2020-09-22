@@ -5,6 +5,8 @@
 
 void init_keyboard();
 
+void process_keypress(uint8_t scancode);
+
 struct
 {
   uint8_t caps;

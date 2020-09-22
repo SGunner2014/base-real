@@ -1,8 +1,8 @@
-#include "core/cpu/setup.h"
-#include "core/cpu/isr.h"
-#include "core/cpu/ports.h"
-#include "drivers/keyboard/keyboard.h"
-#include "drivers/console/console.h"
+#ifndef KMAIN_H
+#define KMAIN_H
 
 void kmain();
 void perform_setup();
+void on_user_input(char *input);
+
+#endif

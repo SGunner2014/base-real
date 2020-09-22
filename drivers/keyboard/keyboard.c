@@ -5,6 +5,7 @@
 #include "../console/console.h"
 #include "../../libc/function.h"
 #include "../../libc/string.h"
+#include "../../kmain.h"
 
 #define SCAN_MAX 57
 #define RELEASE_KEY 0x80
@@ -86,8 +87,8 @@ void process_keypress(uint8_t scancode)
     }
     else if (scancode == ENTER)
     {
-        print("\n");
-        // TODO: process user input
+        write("\n");
+        on_user_input(key_buffer);
         key_buffer[0] = '\0';
     }
     else
