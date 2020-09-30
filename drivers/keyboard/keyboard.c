@@ -5,7 +5,7 @@
 #include "../console/console.h"
 #include "../../libc/function.h"
 #include "../../libc/string.h"
-#include "../../kmain.h"
+#include "../../kernel/kmain.h"
 
 #define SCAN_MAX 57
 #define RELEASE_KEY 0x80

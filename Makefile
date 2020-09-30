@@ -1,4 +1,4 @@
-OBJECTS = boot/loader.o kmain.o drivers/screen/screen_buffer.o core/cpu/ports.o libc/mem.o core/mem/gdt.o core/cpu/idt.o core/cpu/isr.o \
+OBJECTS = boot/loader.o kernel/kmain.o drivers/screen/screen_buffer.o core/cpu/ports.o libc/mem.o core/mem/gdt.o core/cpu/idt.o core/cpu/isr.o \
 	core/cpu/setup.o core/cpu/interrupt.o drivers/keyboard/keyboard.o drivers/console/console.o \
 	boot/paging.o boot/paging_asm.o libc/string.o core/cpu/timer.o
 CC = gcc
