@@ -38,16 +38,19 @@ const char sc_uppercase[] = {
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '@', '~', '?', '|', 'Z',
     'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '?', '?', '?', ' '};
 
-static void handle_keyboard_interrupt(registers_t *register_state) {
+static void handle_keyboard_interrupt(registers_t *register_state)
+{
   // scancode will be in port 0x60
   uint8_t scancode = port_byte_in(0x60);
 
   // See if we've released a key
   uint8_t released = RELEASE_KEY & scancode;
-  if (released) {
+  if (released)
+  {
     released = scancode ^ RELEASE_KEY;
 
-    switch (released) {
+    switch (released)
+    {
     case L_SHIFT:
       kflags.lshift = 0;
       break;
@@ -58,8 +61,11 @@ static void handle_keyboard_interrupt(registers_t *register_state) {
 
     UNUSED(register_state);
     return;
-  } else {
-    switch (scancode) {
+  }
+  else
+  {
+    switch (scancode)
+    {
     case L_SHIFT:
       kflags.lshift = 1;
       break;
@@ -75,23 +81,32 @@ static void handle_keyboard_interrupt(registers_t *register_state) {
   }
 }
 
-void process_keypress(uint8_t scancode) {
+void process_keypress(uint8_t scancode)
+{
   if (scancode > SCAN_MAX)
     return;
 
-  if (scancode == BACKSPACE) {
+  if (scancode == BACKSPACE)
+  {
     int len = backspace(key_buffer);
     if (len > 0)
       print_backspace();
-  } else if (scancode == ENTER) {
+  }
+  else if (scancode == ENTER)
+  {
     write("\n");
     on_user_input(key_buffer);
     key_buffer[0] = '\0';
-  } else {
+  }
+  else
+  {
     char letter;
-    if (kflags.caps || kflags.lshift || kflags.rshift) {
+    if (kflags.caps || kflags.lshift || kflags.rshift)
+    {
       letter = sc_uppercase[(int)scancode];
-    } else {
+    }
+    else
+    {
       letter = sc_ascii[(int)scancode];
     }
 
